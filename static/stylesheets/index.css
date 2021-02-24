@@ -1,91 +1,153 @@
 :root {
-	--blue-bg: #031E11BA;
-	--blue-fg: #14fdce;
-	--blue-text-shadow: #27e1fa;
-	--blue-dark-bg: #031E11CA;
-	--blue-border: rgba( 0, 255, 255, 0.7 );
+  --blue-bg: #031e11ba;
+  --blue-fg: #14fdce;
+  --blue-text-shadow: #27e1fa;
+  --blue-dark-bg: #031e11ca;
+  --blue-border: rgba(0, 255, 255, 0.7);
 
-	--reverse-blue-bg: rgba( 200, 255, 215, 0.8 );
-	--reverse-blue-fg: #137B49;
+  --reverse-blue-bg: rgba(200, 255, 215, 0.8);
+  --reverse-blue-fg: #137b49;
 
-	--orange-bg: #1E0E03BA;
-	--orange-dark-bg: #1E0E03CA;
-	--orange-fg: #ff935e;
-	--orange-text-shadow: #fae327;
-	--orange-border: rgba( 255, 255, 0, 0.7 );
+  --orange-bg: #1e0e03ba;
+  --orange-dark-bg: #1e0e03ca;
+  --orange-fg: #ff935e;
+  --orange-text-shadow: #fae327;
+  --orange-border: rgba(255, 255, 0, 0.7);
 
-	--reverse-orange-bg: #ff935eBA;
-	--reverse-orange-fg: #1E0E03;
+  --reverse-orange-bg: #ff935eba;
+  --reverse-orange-fg: #1e0e03;
 
-	--main-opaque-bg: #052F2B;
+  --main-opaque-bg: #052f2b;
+
+  --panel-height: 400px;
 }
 
 @font-face {
-	font-family: Orbitron;
-	src: url("../fonts/Orbitron/Orbitron.ttf");
+  font-family: Orbitron;
+  src: url("../fonts/Orbitron/Orbitron.ttf");
 }
 @font-face {
-	font-family: RobotoMono;
-	src: url("../fonts/Roboto_Mono/RobotoMono-Regular.ttf");
+  font-family: RobotoMono;
+  src: url("../fonts/Roboto_Mono/RobotoMono-Regular.ttf");
 }
 
-html, body {
-	height: 100%;
-	margin: 0;
-	font-family: sans-serif;
-	overflow: hidden; /* regression ? */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  overflow: hidden; /* regression ? */
+}
+#camera {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  /*delete the lines until comment after adding camera*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*maybe you wont need to delete ;)*/
+}
+#cambox {
+  display: none;
+  position: absolute;
+  min-height: 400px;
+  min-width: 400px;
+  max-height: fit-content;
+  max-width: fit-content;
+  background: var(--blue-bg);
+  color: var(--blue-fg);
+  z-index: 501;
+  text-align: left;
+}
+.resizer {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: black;
+  z-index: 502;
+}
+.resizer.nw {
+  top: -1px;
+  left: -1px;
+  cursor: nw-resize;
+}
+.resizer.ne {
+  top: -1px;
+  right: -1px;
+  cursor: ne-resize;
+}
+.resizer.sw {
+  bottom: -1px;
+  left: -1px;
+  cursor: sw-resize;
+}
+.resizer.se {
+  bottom: -1px;
+  right: -1px;
+  cursor: se-resize;
 }
 
 #map {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #BottomRightPanel {
-	position: absolute;
-	width: 20em;
-	bottom: 0;
-	right: 0;
-	background: var(--blue-bg);
-	color: var(--blue-fg);
-	z-index: 500;
-	padding: 1em;
-	margin: 0.5em;
-	clip-path: polygon(30px 0, 100% 0px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px);
-	transition: visibility 0.25s, opacity 0.25s;
+  position: absolute;
+  width: 20em;
+  bottom: 0;
+  right: 0;
+  background: var(--blue-bg);
+  color: var(--blue-fg);
+  z-index: 500;
+  padding: 1em;
+  margin: 0.5em;
+  clip-path: polygon(
+    30px 0,
+    100% 0px,
+    100% calc(100% - 30px),
+    calc(100% - 30px) 100%,
+    0 100%,
+    0 30px
+  );
+  transition: visibility 0.25s, opacity 0.25s;
 }
 
 #BottomRightPanel.hidden {
-	visibility: hidden;
-	opacity: 0;
+  visibility: hidden;
+  opacity: 0;
 }
 #BottomRightPanel > .close {
-	position: absolute;
-	right: 0;
-	top: 0;
-	margin: 8px;
-	padding: 6px 14px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 8px;
+  padding: 6px 14px;
 }
 #BottomRightPanel > .content {
-	margin-right: 1.5em;
+  margin-right: 1.5em;
 }
 #BottomRightPanel > .content > * {
-	margin: 3px;
+  margin: 3px;
 }
 
 #BottomRightPanel > h1 {
-	font-size: 2rem;
-    text-shadow: 0 0 5px var(--blue-text-shadow);
+  font-size: 2rem;
+  text-shadow: 0 0 5px var(--blue-text-shadow);
 }
 
 #BottomLeftPanel {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: var(--blue-bg);
-    color: var(--blue-fg);
-    z-index: 500;
-	/*
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--blue-bg);
+  color: var(--blue-fg);
+  z-index: 500;
+  /*
 	font-family: RobotoMono;
 	font-size: 1.5em;
 	position: absolute;
@@ -101,451 +163,455 @@ html, body {
 	*/
 }
 
-#TopLeftPanel {
-	font-family: Orbitron;
-	position: absolute;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 0.5em;
-	width: 66%;
-	z-index: 500;
-	clip-path: polygon(0 0, 100% 0px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
-	background: var(--blue-bg);
-	color: var(--blue-fg);
-	text-shadow: 0 0 5px var(--blue-text-shadow);
-	transition: 0.4s;
-	display: flex;
+#TopBottomPanel {
+  font-family: Orbitron;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0.5em;
+  width: 100%;
+  height: var(--panel-height);
+  z-index: 500;
+  /* clip-path: polygon(
+    0 0,
+    100% 0px,
+    100% calc(100% - 30px),
+    calc(100% - 30px) 100%,
+    0 100%
+  ); */
+  background: var(--blue-bg);
+  color: var(--blue-fg);
+  text-shadow: 0 0 5px var(--blue-text-shadow);
+  transition: 0.4s;
+  display: flex;
 }
 
-#TopLeftPanel.hidden {
-	transform: translateY(-100%);
+#TopBottomPanel.hidden {
+  transform: translateY(-100%);
 }
 
-#TopLeftPanel.warning {
-	background: var(--orange-bg);
-	color: var(--orange-fg);
-	text-shadow: 0 0 5px var(--orange-text-shadow);
+#TopBottomPanel.warning {
+  background: var(--orange-bg);
+  color: var(--orange-fg);
+  text-shadow: 0 0 5px var(--orange-text-shadow);
 }
 
 #TopRightPanel {
-	font-size: 1.25em;
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0.5em 0.5em 1em 1em;
-	color: var(--blue-fg);
-	z-index: 500;
-	text-shadow: 0 0 5px var(--blue-text-shadow);
-	transition: 0.4s;
+  font-family: sans-serif;
+  font-size: 1.25em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.4em;
+  padding: 0.5em 0.5em 1em 1em;
+  color: var(--blue-fg);
+  z-index: 500;
+  text-shadow: 0 0 5px var(--blue-text-shadow);
+  transition: 0.4s;
 }
 
 #TopRightPanel.hidden {
-	transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 #TopRightPanel::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-    background: var(--blue-bg);
-    clip-path: polygon(0 0, 100% 0px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
-	z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  /* background: var(--blue-bg); */
+  clip-path: polygon(0 0, 100% 0px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  z-index: -1;
 }
 
 #LatLang {
-	text-shadow: 0 0 5px var(--blue-text-shadow);
+  text-shadow: 0 0 5px var(--blue-text-shadow);
 }
 
-
 #Tooltip {
-	position: absolute;
-	z-index: 990;
-	background: var(--blue-bg);
-	color: var(--blue-fg);
-	transition: visibility 0.2s, opacity 0.2s, transform 0.3s;
-	padding: 0.5em;
+  position: absolute;
+  z-index: 990;
+  background: var(--blue-bg);
+  color: var(--blue-fg);
+  transition: visibility 0.2s, opacity 0.2s, transform 0.3s;
+  padding: 0.5em;
 }
 
 #Tooltip.hidden {
-	visibility: hidden;
-	opacity: 0;
-	transform: scaleY(0.1);
+  visibility: hidden;
+  opacity: 0;
+  transform: scaleY(0.1);
 }
 
 #ContextMenu {
-	position: absolute;
-	z-index: 950;
-	background: var(--blue-bg);
-	color: var(--blue-fg);
-	border: 0.15em solid var(--blue-border);
-	transition: visibility 0.2s, opacity 0.2s, transform 0.3s;
+  position: absolute;
+  z-index: 950;
+  background: var(--blue-bg);
+  color: var(--blue-fg);
+  border: 0.15em solid var(--blue-border);
+  transition: visibility 0.2s, opacity 0.2s, transform 0.3s;
 }
 #ContextMenu.hidden {
-	visibility: hidden;
-	opacity: 0;
-	transform: scaleY(0.1);
+  visibility: hidden;
+  opacity: 0;
+  transform: scaleY(0.1);
 }
 #ContextMenu > div {
-	padding: 0.1em 0.25em;
-	cursor: pointer;
-	user-select: none;
+  padding: 0.1em 0.25em;
+  cursor: pointer;
+  user-select: none;
 }
 #ContextMenu > div:hover {
-	background: var(--reverse-blue-bg);
-	color: var(--reverse-blue-fg);
+  background: var(--reverse-blue-bg);
+  color: var(--reverse-blue-fg);
 }
 
-
 #Overlay {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	opacity: 1;
-	transition: visibility 0.5s, opacity 0.5s;
-	z-index: 700;
-	background: var(--blue-dark-bg);
-	color: var(--blue-fg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: visibility 0.5s, opacity 0.5s;
+  z-index: 700;
+  background: var(--blue-dark-bg);
+  color: var(--blue-fg);
 }
 
 #Overlay.warning {
-	background: var(--orange-dark-bg);
-	color: var(--orange-fg);
+  background: var(--orange-dark-bg);
+  color: var(--orange-fg);
 }
 
 #Overlay.hidden {
-	visibility: hidden;
-	opacity: 0;
+  visibility: hidden;
+  opacity: 0;
 }
 
 #CentredContent {
-	margin: 1.4em;
+  margin: 1.4em;
 }
 
 h1,
 h2 {
-	text-shadow: 0 0 5px var(--blue-text-shadow);
-	font-weight: normal;
-	font-family: Orbitron;
+  text-shadow: 0 0 5px var(--blue-text-shadow);
+  font-weight: normal;
+  font-family: Orbitron;
 }
 
 .warning h1,
 .warning h2 {
-	text-shadow: 0 0 5px var(--orange-text-shadow);
+  text-shadow: 0 0 5px var(--orange-text-shadow);
 }
 
 .blockButton {
-	text-shadow: 0 0 5px var(--blue-text-shadow);
-	background: var(--blue-dark-bg);
-	color: var(--blue-fg);
-	border: 0.15em solid var(--blue-border);
-	padding: 0.6em 1.2em;
-	margin: 0.2em;
-	cursor: pointer;
-	text-align: center;
-	user-select: none;
+  text-shadow: 0 0 5px var(--blue-text-shadow);
+  background: var(--blue-dark-bg);
+  color: var(--blue-fg);
+  border: 0.15em solid var(--blue-border);
+  padding: 0.6em 1.2em;
+  margin: 0.2em;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .blockButton:hover {
-	background: var(--reverse-blue-bg);
-	color: var(--reverse-blue-fg);
+  background: var(--reverse-blue-bg);
+  color: var(--reverse-blue-fg);
 }
 .warning .blockButton {
-	border: 0.15em solid var(--orange-border);
-	text-shadow: 0 0 3px var(--orange-text-shadow);
-	background: var(--orange-dark-bg);
-	color: var(--orange-fg);
+  border: 0.15em solid var(--orange-border);
+  text-shadow: 0 0 3px var(--orange-text-shadow);
+  background: var(--orange-dark-bg);
+  color: var(--orange-fg);
 }
 .warning .blockButton:hover {
-	background: var(--reverse-orange-bg);
-	color: var(--reverse-orange-fg);
+  background: var(--reverse-orange-bg);
+  color: var(--reverse-orange-fg);
 }
 
 .blockButton.disabled {
-	text-shadow: none;
-    color: gray;
-	/* TODO: var? */
-	border: 0.15em solid gray;
-	cursor: not-allowed;
+  text-shadow: none;
+  color: gray;
+  /* TODO: var? */
+  border: 0.15em solid gray;
+  cursor: not-allowed;
 }
 .blockButton.disabled:hover {
-	background: var(--blue-dark-bg);
-	color: gray;
+  background: var(--blue-dark-bg);
+  color: gray;
 }
 
 .blockButton.alt {
-	border: 0.15em solid var(--orange-border);
-	text-shadow: 0 0 3px var(--orange-text-shadow);
-	background: var(--orange-dark-bg);
-	color: var(--orange-fg);
+  border: 0.15em solid var(--orange-border);
+  text-shadow: 0 0 3px var(--orange-text-shadow);
+  background: var(--orange-dark-bg);
+  color: var(--orange-fg);
 }
 .blockButton.alt:hover {
-	background: var(--reverse-orange-bg);
-	color: var(--reverse-orange-fg);
+  background: var(--reverse-orange-bg);
+  color: var(--reverse-orange-fg);
 }
 
 button {
-	text-shadow: 0 0 5px var(--blue-text-shadow);
-	background: var(--blue-dark-bg);
-	color: var(--blue-fg);
-	border: 0.15em solid var(--blue-border);
-	padding: 0.6em 1.2em;
-	margin: 0.2em;
-	cursor: pointer;
-	text-align: center;
+  text-shadow: 0 0 5px var(--blue-text-shadow);
+  background: var(--blue-dark-bg);
+  color: var(--blue-fg);
+  border: 0.15em solid var(--blue-border);
+  padding: 0.6em 1.2em;
+  margin: 0.2em;
+  cursor: pointer;
+  text-align: center;
 }
 button:hover {
-	background: var(--reverse-blue-bg);
-	color: var(--reverse-blue-fg);
+  background: var(--reverse-blue-bg);
+  color: var(--reverse-blue-fg);
 }
 
 #MenuButton {
-	font-family: Orbitron;
+  font-family: Orbitron;
 }
 
-
 #OverlayTopBar {
-	width: 100%;
-	height: 5em;
-	background: #022011c9;
-	top: 0;
-	position: absolute;
-	padding: 0;
-	left: 0;
-	border-right: 0.1em solid;
-	display: flex;
-	flex-direction: row;
-	transition: 0.6s;
-	border-bottom: 0.1em solid;
+  width: 100%;
+  height: 5em;
+  background: #022011c9;
+  top: 0;
+  position: absolute;
+  padding: 0;
+  left: 0;
+  border-right: 0.1em solid;
+  display: flex;
+  flex-direction: row;
+  transition: 0.6s;
+  border-bottom: 0.1em solid;
 }
 
 .hidden #OverlayTopBar {
-	transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 #OverlayTopBar > .block {
-	margin-top: auto;
-	margin-bottom: auto;
-	display: flex;
-	flex-grow: 1;
-	align-items: center;
-	justify-content: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 #OverlayTopBar .blockButton {
-	font-family: Orbitron;
-	margin: 1em 1em;
-	text-align: center;
+  font-family: Orbitron;
+  margin: 1em 1em;
+  text-align: center;
 }
 
 #OverlayTopBar > hr {
-	color: var(--blue-fg);
+  color: var(--blue-fg);
 }
 
 #OverlayContent {
-	position: absolute;
-	width: 100%;
-    height: calc(100% - 5em);
-    bottom: 0%;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 5em);
+  bottom: 0%;
 }
 
 #OverlayBottom {
-	position: absolute;
-	width: 100%;
-	height: calc(100% - 5em);
-	top: 5em;
-	display: flex;
-	flex-wrap: wrap;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 5em);
+  top: 5em;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .halfBox {
-	width: 50%;
-	height: 50%;
+  width: 50%;
+  height: 50%;
 }
 
 .contentBox {
-	margin: 2em;
-	padding: 1em;
-	color: var(--blue-fg);
-	background: #022011c9;
-	border: 0.1em solid;
+  margin: 2em;
+  padding: 1em;
+  color: var(--blue-fg);
+  background: #022011c9;
+  border: 0.1em solid;
 }
 
 .contentBox h1 {
-	margin: 0 1em;
-    font-family: Orbitron;
+  margin: 0 1em;
+  font-family: Orbitron;
 }
 
 .barWrap {
-	font: 15px RobotoMono;
-	text-align: right;
-	margin: 1em;
+  font: 15px RobotoMono;
+  text-align: right;
+  margin: 1em;
 }
 
 .horizontalBarWrap {
-	display: flex;
-	flex-direction: row;
-	margin: 0.2em 0;
+  display: flex;
+  flex-direction: row;
+  margin: 0.2em 0;
 }
 
 .horizontalBarWrap > div {
-	padding: 0.3em;
-	height: 1em;
+  padding: 0.3em;
+  height: 1em;
 }
 
 .horizontalBarWrap .horizontalBar {
-	padding: 0;
-	background: rgba( 200, 255, 215, 0.8 );
-	color: #031E11;
-	overflow: hidden;
-	height: 1.6em;
+  padding: 0;
+  background: rgba(200, 255, 215, 0.8);
+  color: #031e11;
+  overflow: hidden;
+  height: 1.6em;
 }
 
 .horizontalBar p {
-	margin: 0.3em;
+  margin: 0.3em;
 }
 
-
 #TopBar {
-	position: absolute;
-	left: 0;
-	width: 20em;
-	z-index: 599;
-	right: 0;
-	margin: 0 auto;
-	display: flex;
+  position: absolute;
+  left: 0;
+  width: 20em;
+  z-index: 599;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
 }
 
 #TopBar > * {
-	flex-grow: 1;
+  flex-grow: 1;
 }
 
-
-
 input[type="file"] {
-    display: none;
+  display: none;
 }
 
 input[type="text"] {
-	text-shadow: 0 0 5px var(--blue-text-shadow);
-	background: var(--blue-dark-bg);
-	color: var(--blue-fg);
-	border: 0.15em solid var(--blue-border);
-	padding: 0.2em;
-	margin: 0.2em;
-	font-family: RobotoMono;
+  text-shadow: 0 0 5px var(--blue-text-shadow);
+  background: var(--blue-dark-bg);
+  color: var(--blue-fg);
+  border: 0.15em solid var(--blue-border);
+  padding: 0.2em;
+  margin: 0.2em;
+  font-family: RobotoMono;
 }
 
 #PanelContainer {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: row;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 #PanelContainer > div {
-	margin: 0;
-	height: 100%;
+  margin: 0;
+  height: 100%;
 }
 
 #LeftPanel {
-	position: relative;
-	flex-grow: 1;
+  position: relative;
+  flex-grow: 1;
 }
 
 #RightPanel {
-	width: 30em;
-	background: var(--main-opaque-bg);
-	color: var(--blue-fg);
-    border-left: 0.1em solid;
-	overflow-y: scroll;
+  width: 30em;
+  background: var(--main-opaque-bg);
+  color: var(--blue-fg);
+  border-left: 0.1em solid;
+  overflow-y: scroll;
 }
 
 #RightPanelContent {
-	padding: 1em;
+  padding: 1em;
 }
 
 #HUD {
-	position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-	pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  pointer-events: none;
 }
 
 #HUD > * {
-	pointer-events: auto;
+  pointer-events: auto;
 }
 
 .disabled {
-	text-shadow: none;
-    color: gray;
+  text-shadow: none;
+  color: gray;
 }
 
-
 .selectList {
-	user-select: none;
-	border: 0.15em solid var(--blue-border);
-	margin: 2em 0em;
-	background: black;
+  user-select: none;
+  border: 0.15em solid var(--blue-border);
+  margin: 2em 0em;
+  background: black;
 }
 
 .selectList > div {
-	padding: 0.1em 0.5em;
-	display: flex;
-	cursor: pointer;
+  padding: 0.1em 0.5em;
+  display: flex;
+  cursor: pointer;
 }
 .selectList.wide > div {
-	padding: 0.4em 0.5em;
+  padding: 0.4em 0.5em;
 }
 
 .selectList > .currentIndex::before {
-	content: "▶ ";
+  content: "▶ ";
 }
 .selectList.wide > div::before {
-	content: "▶ ";
-	padding: 0.5em 1em 0.5em 0.5em;
-	position: absolute;
-    transform: translateX(-2.5em);
-    opacity: 0;
-	transition: opacity 0.5s;
+  content: "▶ ";
+  padding: 0.5em 1em 0.5em 0.5em;
+  position: absolute;
+  transform: translateX(-2.5em);
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 .selectList.wide > .selected::before {
-	opacity: 1;
+  opacity: 1;
 }
 .selectList.wide > div {
-	transition: padding 0.5s;
-	position: relative;
+  transition: padding 0.5s;
+  position: relative;
 }
 .selectList.wide > .selected {
-	padding-left: 3em;
+  padding-left: 3em;
 }
 
 .selectList > div:hover {
-	background: var(--reverse-blue-bg);
-	color: var(--reverse-blue-fg);
+  background: var(--reverse-blue-bg);
+  color: var(--reverse-blue-fg);
 }
 .selectList > div.hover {
-	background: var(--reverse-blue-bg);
-	color: var(--reverse-blue-fg);
+  background: var(--reverse-blue-bg);
+  color: var(--reverse-blue-fg);
 }
 
 .policyControls {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
-
 .rightFlexFloat {
-	flex-grow: 1;
-	text-align: right;
+  flex-grow: 1;
+  text-align: right;
 }

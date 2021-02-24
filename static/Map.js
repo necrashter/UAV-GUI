@@ -8,7 +8,7 @@ const Map = L.map('map', {
 	preferCanvas: true, // improves performance
 	attributionControl: false,
 	zoomControl: false
-}).setView( {lat: 39.56758783088905, lng: 34.44763183593751}, 7);
+}).setView({ lat: 39.56758783088905, lng: 34.44763183593751 }, 7);
 
 const OpenStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	maxZoom: 19,
@@ -40,7 +40,7 @@ var baseMaps = {
 var selectedBaseMap = null;
 
 function selectMap(name) {
-	if(selectedBaseMap) {
+	if (selectedBaseMap) {
 		baseMaps[selectedBaseMap].remove();
 	}
 	baseMaps[name].addTo(Map).bringToBack();
@@ -51,16 +51,16 @@ selectMap("StamenTerrain");
 var TopRightPanel = document.getElementById("TopRightPanel");
 
 
-(function() { // limits the scope
+(function () { // limits the scope
 	var innerDiv;
 	const wrapperDiv = d3.create("div")
-		.attr("class","CustomSelect")
+		.attr("class", "CustomSelect")
 		.style("z-index", 20);
 	var headDiv = wrapperDiv.append("div")
 		.attr("class", "CustomSelectHead")
 		.style("width", "12em")
 		.text(selectedBaseMap)
-		.on("click", function(_) {
+		.on("click", function (_) {
 			innerDiv.classList.toggle("open");
 		}).node();
 	const ul = wrapperDiv.append("div").attr("class", "CustomSelectList").append("div");
@@ -72,7 +72,7 @@ var TopRightPanel = document.getElementById("TopRightPanel");
 		.text(d => d)
 		.on("click", d => {
 			selectMap(d);
-			headDiv.innerText=d;
+			headDiv.innerText = d;
 			innerDiv.classList.remove("open");
 		});
 
@@ -85,7 +85,7 @@ var TopRightPanel = document.getElementById("TopRightPanel");
 			.attr("type", "checkbox")
 			.on("change", () => {
 				Settings.animateAnts = checkbox.node().checked;
-				if(graph) graph.rerender();
+				if (graph) graph.rerender();
 			});
 		checkbox.node().checked = Settings.animateAnts;
 		div.append("label")
@@ -100,7 +100,7 @@ var TopRightPanel = document.getElementById("TopRightPanel");
 			.attr("type", "checkbox")
 			.on("change", () => {
 				Settings.arrows = checkbox.node().checked;
-				if(graph) graph.rerender();
+				if (graph) graph.rerender();
 			});
 		div.append("label")
 			.attr("for", "arrows")
@@ -126,14 +126,14 @@ Map.on('mousemove', (event) => {
 
 Map.on('click', event => {
 	// NOTE: This fires even if user clicks on a marker
-	let lat = Math.round(event.latlng.lat*10000.0)/10000.0;
-	let lng = Math.round(event.latlng.lng*10000.0)/10000.0;
-	console.log("{ \"latlng\": [",lat,",",lng,"]}");
+	let lat = Math.round(event.latlng.lat * 10000.0) / 10000.0;
+	let lng = Math.round(event.latlng.lng * 10000.0) / 10000.0;
+	console.log("{ \"latlng\": [", lat, ",", lng, "]}");
 });
 
 Map.on("contextmenu", event => {
 	console.log("contextmenu")
-	if(graph) {
+	if (graph) {
 		graph.contextMenu(event);
 		ContextMenu.toggle(event.originalEvent);
 	}
@@ -171,10 +171,10 @@ const MapThemes = {
 	"Default": {
 		colors: {
 			action: "#0000FF",
-				energized: "#24B700",
-				damaged: "#c70039",
-				shadow: "#574f7d",
-				risky: "#FDDC01",
+			energized: "#24B700",
+			damaged: "#c70039",
+			shadow: "#574f7d",
+			risky: "#FDDC01",
 		},
 		css: ""
 	},
@@ -199,11 +199,11 @@ const MapThemes = {
 
 function setMapTheme(name) {
 	let theme = MapThemes[name];
-	if(theme) {
+	if (theme) {
 		Colors = theme.colors;
 		CustomLeafletStyle.innerText = theme.css;
 	} else {
-		throw new Error("Theme not found with name: "+name);
+		throw new Error("Theme not found with name: " + name);
 	}
 }
 // setMapTheme("Dark")
