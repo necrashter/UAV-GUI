@@ -1,0 +1,61 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>UAV GUI</title>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="stylesheets/animations.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/graph.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/CustomSelect.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/CustomCheckbox.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/Spinner.css">
+		<!-- 3rd party scripts -->
+		<link rel="stylesheet" href="libs/leaflet/leaflet.css" >
+		<script src="libs/leaflet/leaflet.js" ></script>
+		<script src="libs/leaflet-ant-path.js" type="text/javascript"></script>
+		<script src="libs/leaflet.polylineDecorator.js" type="text/javascript"></script>
+		<script src="libs/d3/d3.min.js"></script>
+	</head>
+	<body> 
+		<div id="PanelContainer">
+			<div id="LeftPanel">
+				<div id="map"></div> 
+				<div id="HUD">
+					<div id="BottomLeftPanel">
+						<div id="LatLang"></div>
+					</div>
+					<div id="BottomRightPanel" class="hidden">
+						<div class="close blockButton" 
+							onclick="BottomRightPanel.hide()">
+							X
+						</div>
+						<div class="content"></div>
+					</div>
+					<div id="TopLeftPanel">
+						<div id="MenuButton" class="blockButton">Menu</div>
+						<label class="blockButton" for="fileInput">Load</label>
+						<input id="fileInput" type="file" onchange="graph.readFile(event)">
+						<div class="blockButton" onclick="graph.saveFile()">Save</div>
+						<div class="blockButton" onclick="graph.clear()">Clear</div>
+					</div>
+					<div id="TopRightPanel">
+					</div>
+				</div>
+			</div> 
+		</div> 
+
+		<div id="Overlay" class="hidden"> </div>
+
+		<div id="Tooltip" class="hidden"></div>
+		<div id="ContextMenu" class="hidden"></div>
+
+		<script src="Network.js"></script>
+		<script src="HUD.js"></script>
+		<script src="Tooltip.js"></script>
+		<script src="Graph.js"></script>
+		<script src="Map.js"></script>
+		<script src="Menu.js"></script>
+		<script src="Main.js"></script>
+	</body>
+</html>
