@@ -116,6 +116,7 @@ html, body {
 	text-shadow: 0 0 5px var(--blue-text-shadow);
 	transition: 0.4s;
 	display: flex;
+	overflow-x: auto;
 }
 
 #TopLeftPanel.hidden {
@@ -129,7 +130,6 @@ html, body {
 }
 
 #TopRightPanel {
-	font-size: 1.25em;
 	position: absolute;
 	top: 0;
 	right: 0;
