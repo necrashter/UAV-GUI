@@ -1,103 +1,132 @@
 const BottomRightPanel = document.getElementById("BottomRightPanel");
 const BottomRightPanelContent = BottomRightPanel.querySelector(".content");
-//https://gist.github.com/jonasgroendahl/efc5c880328860b9550ceab5753a6a55
-const cambox = document.getElementById("cambox");
+
+//https://gist.github.com/jonasgroendahl/efc5c880328860b9550ceab5753a6a55 cameraHUD starts here
+// const cambox = document.getElementById("cambox");
+// const camButton = document.getElementById("camButton");
+// const CAM_ASPECT = 1;//width/height
+// const CAM_MIN_HEIGHT = 400;//px
+// let camActive = false;
+
+// camButton.addEventListener("click", function (event) {
+// 	if (camActive) {
+// 		camActive = false;
+// 		cambox.style.display = "none";
+// 	} else {
+// 		camActive = true;
+// 		cambox.style.display = "block";
+// 		cambox.style.top = "10px";
+// 		cambox.style.left = "290px";
+
+
+// 		cambox.style.minHeight = CAM_MIN_HEIGHT + "px"
+// 		cambox.style.minWidth = CAM_MIN_HEIGHT * CAM_ASPECT + "px"
+// 	}
+// })
+
+// let isResizing = false;
+
+// cambox.addEventListener("mousedown", function (event) {
+// 	let prevX = event.clientX,
+// 		prevY = event.clientY;
+
+// 	window.addEventListener("mousemove", mousemove);
+// 	window.addEventListener("mouseup", mouseup)
+// 	console.log("drag mousedown");
+// 	function mousemove(event) {
+// 		console.log("drag mousemove");
+// 		if (!isResizing) {
+// 			let diffX = event.clientX - prevX,
+// 				diffY = event.clientY - prevY;
+
+// 			const rect = cambox.getBoundingClientRect();
+// 			cambox.style.left = rect.left + diffX + "px",
+// 				cambox.style.top = rect.top + diffY + "px";
+// 			prevX = event.clientX, prevY = event.clientY;
+// 		}
+// 	}
+// 	function mouseup(event) {
+// 		window.removeEventListener("mousemove", mousemove);
+// 		window.removeEventListener("mouseup", mouseup);
+// 	}
+// })
+// const save_aspect = true;
+// const resizers = document.querySelectorAll(".resizer");
+// let currentResizer;
+
+// for (let resizer of resizers) {
+// 	resizer.addEventListener("mousedown", mousedown);
+
+// 	function mousedown(event) {
+// 		currentResizer = event.target;
+// 		isResizing = true;
+
+// 		let prevX = event.clientX;
+// 		let prevY = event.clientY;
+
+// 		window.addEventListener("mousemove", mousemove);
+// 		window.addEventListener("mouseup", mouseup);
+// 		console.log("resize mousedown");
+
+// 		function mousemove(event) {
+// 			console.log("resize mousemove");
+
+// 			const rect = cambox.getBoundingClientRect();
+
+// 			let diffY = event.clientY - prevY;
+
+// 			if (currentResizer.classList.contains("se")) {
+// 				let diffX = (save_aspect) ? diffY * CAM_ASPECT : event.clientX - prevX;
+// 				cambox.style.width = rect.width + diffX + "px";
+// 				cambox.style.height = rect.height + diffY + "px";
+// 			} else if (currentResizer.classList.contains("sw")) {
+// 				let diffX = (save_aspect) ? -diffY * CAM_ASPECT : event.clientX - prevX;
+// 				cambox.style.width = rect.width - diffX + "px";
+// 				cambox.style.height = rect.height + diffY + "px";
+// 				cambox.style.left = rect.left + diffX + "px";
+// 			} else if (currentResizer.classList.contains("ne")) {
+// 				let diffX = (save_aspect) ? -diffY * CAM_ASPECT : event.clientX - prevX;
+// 				cambox.style.width = rect.width + diffX + "px";
+// 				cambox.style.height = rect.height - diffY + "px";
+// 				cambox.style.top = rect.top + diffY + "px";
+// 			} else {
+// 				let diffX = (save_aspect) ? diffY * CAM_ASPECT : event.clientX - prevX;
+// 				cambox.style.width = rect.width - diffX + "px";
+// 				cambox.style.height = rect.height - diffY + "px";
+// 				cambox.style.top = rect.top + diffY + "px";
+// 				cambox.style.left = rect.left + diffX + "px";
+// 			}
+
+// 			prevX = event.clientX;
+// 			prevY = event.clientY;
+// 		}
+
+// 		function mouseup() {
+// 			window.removeEventListener("mousemove", mousemove);
+// 			window.removeEventListener("mouseup", mouseup);
+// 			isResizing = false;
+// 		}
+// 	}
+
+// }
 const camButton = document.getElementById("camButton");
-
+let cambox = new Floating("cambox", 400, 1.5);
 let camActive = false;
-
 camButton.addEventListener("click", function (event) {
+	console.log("clicked");
 	if (camActive) {
+		console.log("yes");
 		camActive = false;
-		cambox.style.display = "none";
+		cambox.hide();
 	} else {
+		console.log("no");
 		camActive = true;
-		cambox.style.display = "block";
-		cambox.style.top = "10px";
-		cambox.style.right = "290px";
+		cambox.show("10px", "290px");
 	}
 })
-
-let isResizing = false;
-
-cambox.addEventListener("mousedown", function (event) {
-	let prevX = event.clientX,
-		prevY = event.clientY;
-
-	window.addEventListener("mousemove", mousemove);
-	window.addEventListener("mouseup", mouseup)
-	function mousemove(event) {
-		if (!isResizing) {
-			let diffX = event.clientX - prevX,
-				diffY = event.clientY - prevY;
-
-			const rect = cambox.getBoundingClientRect();
-			cambox.style.left = rect.left + diffX + "px",
-				cambox.style.top = rect.top + diffY + "px";
-			prevX = event.clientX, prevY = event.clientY;
-		}
-	}
-	function mouseup(event) {
-		window.removeEventListener("mousemove", mousemove);
-		window.removeEventListener("mouseup", mouseup);
-	}
-})
-
-const resizers = document.querySelectorAll(".resizer");
-let currentResizer;
-
-for (let resizer of resizers) {
-	resizer.addEventListener("mousedown", mousedown);
-
-	function mousedown(event) {
-		currentResizer = event.target;
-		isResizing = true;
-
-		let prevX = event.clientX;
-		let prevY = event.clientY;
-
-		window.addEventListener("mousemove", mousemove);
-		window.addEventListener("mouseup", mouseup);
-
-		function mousemove(event) {
-			const rect = cambox.getBoundingClientRect();
-
-			let diffX = event.clientX - prevX,
-				diffY = event.clientY - prevY;
-
-
-			if (currentResizer.classList.contains("se")) {
-				cambox.style.width = rect.width + diffX + "px";
-				cambox.style.height = rect.height + diffX + "px";
-
-			} else if (currentResizer.classList.contains("sw")) {
-				cambox.style.width = rect.width - diffX + "px";
-				cambox.style.height = rect.height - diffX + "px";
-				cambox.style.left = rect.left + diffX + "px";
-
-			} else if (currentResizer.classList.contains("ne")) {
-				cambox.style.width = rect.width + diffX + "px";
-				cambox.style.height = rect.height + diffX + "px";
-				cambox.style.top = rect.top - diffX + "px";
-			} else {
-				cambox.style.width = rect.width - diffX + "px";
-				cambox.style.height = rect.height - diffX + "px";
-				cambox.style.top = rect.top + diffX + "px";
-				cambox.style.left = rect.left + diffX + "px";
-			}
-
-			prevX = event.clientX;
-			prevY = event.clientY;
-		}
-
-		function mouseup() {
-			window.removeEventListener("mousemove", mousemove);
-			window.removeEventListener("mouseup", mouseup);
-			isResizing = false;
-		}
-	}
-
-}
+cambox.movable();
+cambox.resizable();
+//cameraHUD is until here
 
 BottomRightPanel.show = function (info = null) {
 	BottomRightPanel.contentInfo = info;

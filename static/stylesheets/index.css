@@ -53,8 +53,6 @@ body {
 #cambox {
   display: none;
   position: absolute;
-  min-height: 400px;
-  min-width: 400px;
   max-height: fit-content;
   max-width: fit-content;
   background: var(--blue-bg);
