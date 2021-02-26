@@ -23,18 +23,25 @@
 			<div id="LeftPanel">
 				<div id="map"></div> 
 				<div id="HUD">
+					<div id="cambox" class="floater">
+						<div class="resizer ne"></div>
+						<div class="resizer nw"></div>
+						<div id="camera">PUT CAMERA HERE</div>
+						<div class="resizer se"></div>
+						<div class="resizer sw"></div>
+					</div>
 					<div id="BottomLeftPanel">
 						<div id="LatLang"></div>
 					</div>
 					<div id="BottomRightPanel" class="hidden">
-						<div class="close blockButton" 
-							onclick="BottomRightPanel.hide()">
+						<div class="close blockButton" onclick="BottomRightPanel.hide()">
 							X
 						</div>
 						<div class="content"></div>
 					</div>
 					<div id="TopLeftPanel">
 						<div id="MenuButton" class="blockButton">Menu</div>
+						<div id="camButton" class="blockButton">Camera</div>
 						<label class="blockButton" for="fileInput">Load</label>
 						<input id="fileInput" type="file" onchange="graph.readFile(event)">
 						<div class="blockButton" onclick="graph.saveFile()">Save</div>
@@ -46,11 +53,13 @@
 			</div> 
 		</div> 
 
-		<div id="Overlay" class="hidden"> </div>
+		<div id="Overlay" class="hidden"></div>
 
 		<div id="Tooltip" class="hidden"></div>
 		<div id="ContextMenu" class="hidden"></div>
 
+		<script src="Debug.js"></script>
+		<script src="Floating.js"></script>
 		<script src="Network.js"></script>
 		<script src="HUD.js"></script>
 		<script src="Tooltip.js"></script>

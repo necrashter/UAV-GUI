@@ -21,7 +21,7 @@ Overlay.show = function () {
 	TopRightPanel.classList.add("hidden");
 }
 
-Overlay.hide = function() {
+Overlay.hide = function () {
 	Overlay.classList.add("hidden");
 	PanelContainer.classList.remove("disabled");
 	TopLeftPanel.classList.remove("hidden");
@@ -53,13 +53,13 @@ function statsButton() {
 
 function generateSideBar() {
 	let div = d3.create("div").attr("id", "OverlayTopBar");
-	div.append("div").attr("class","blockButton")
+	div.append("div").attr("class", "blockButton")
 		.text("X")
 		.on("click", () => {
 			Overlay.classList.add("hidden");
 		});
 	div.append("hr");
-	div.append("div").attr("class","blockButton")
+	div.append("div").attr("class", "blockButton")
 		.text("Stats")
 		.on("click", () => {
 			Overlay.classList.add("hidden");
@@ -86,7 +86,7 @@ function onMenuButton() {
 MenuButton.addEventListener("click", onMenuButton);
 
 
-function showModalOverlay(content, options={}) {
+function showModalOverlay(content, options = {}) {
 	Overlay.innerHTML = `
 	<div id="Centred">
 	  <div id="OverlayClose" class="blockButton">X</div>
@@ -97,7 +97,7 @@ function showModalOverlay(content, options={}) {
 		Overlay.classList.add("hidden");
 		Overlay.classList.remove("warning");
 	});
-	if(options.warning) Overlay.classList.add("warning");
+	if (options.warning) Overlay.classList.add("warning");
 	Overlay.classList.remove("hidden");
 	document.getElementById("CentredContent").appendChild(content);
 }

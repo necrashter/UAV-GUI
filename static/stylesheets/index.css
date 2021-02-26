@@ -1,23 +1,25 @@
 :root {
-	--blue-bg: #031E11BA;
+	--blue-bg: #031e11ba;
 	--blue-fg: #14fdce;
 	--blue-text-shadow: #27e1fa;
-	--blue-dark-bg: #031E11CA;
-	--blue-border: rgba( 0, 255, 255, 0.7 );
+	--blue-dark-bg: #031e11ca;
+	--blue-border: rgba(0, 255, 255, 0.7);
 
-	--reverse-blue-bg: rgba( 200, 255, 215, 0.8 );
-	--reverse-blue-fg: #137B49;
+	--reverse-blue-bg: rgba(200, 255, 215, 0.8);
+	--reverse-blue-fg: #137b49;
 
-	--orange-bg: #1E0E03BA;
-	--orange-dark-bg: #1E0E03CA;
+	--orange-bg: #1e0e03ba;
+	--orange-dark-bg: #1e0e03ca;
 	--orange-fg: #ff935e;
 	--orange-text-shadow: #fae327;
-	--orange-border: rgba( 255, 255, 0, 0.7 );
+	--orange-border: rgba(255, 255, 0, 0.7);
 
-	--reverse-orange-bg: #ff935eBA;
-	--reverse-orange-fg: #1E0E03;
+	--reverse-orange-bg: #ff935eba;
+	--reverse-orange-fg: #1e0e03;
 
-	--main-opaque-bg: #052F2B;
+	--main-opaque-bg: #052f2b;
+
+	--panel-height: 400px;
 }
 
 @font-face {
@@ -29,11 +31,62 @@
 	src: url("../fonts/Roboto_Mono/RobotoMono-Regular.ttf");
 }
 
-html, body {
+html,
+body {
 	height: 100%;
 	margin: 0;
 	font-family: sans-serif;
 	overflow: hidden; /* regression ? */
+}
+#camera {
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+	z-index: 500;
+	/*delete the lines until comment after adding camera*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/*maybe you wont need to delete ;)*/
+}
+
+
+.floater {
+	position: absolute;
+	display: none;
+	background: var(--blue-bg);
+	color: var(--blue-fg);
+	z-index: 501;
+	text-align: left;
+}
+.resizer {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	background-color: black;
+	z-index: 502;
+}
+.resizer.nw {
+	top: -1px;
+	left: -1px;
+	cursor: nw-resize;
+}
+.resizer.ne {
+	top: -1px;
+	right: -1px;
+	cursor: ne-resize;
+}
+.resizer.sw {
+	bottom: -1px;
+	left: -1px;
+	cursor: sw-resize;
+}
+.resizer.se {
+	bottom: -1px;
+	right: -1px;
+	cursor: se-resize;
 }
 
 #map {
@@ -202,7 +255,6 @@ html, body {
 	color: var(--reverse-blue-fg);
 }
 
-
 #Overlay {
 	position: absolute;
 	width: 100%;
@@ -250,6 +302,10 @@ h2 {
 	cursor: pointer;
 	text-align: center;
 	user-select: none;
+	/* height: 30px; */
+	/* display: flex; */
+	/* align-items: center; */
+	/* justify-content: center; */
 }
 
 .blockButton:hover {
@@ -308,7 +364,6 @@ button:hover {
 #MenuButton {
 	font-family: Orbitron;
 }
-
 
 #OverlayTopBar {
 	width: 100%;
@@ -379,7 +434,7 @@ button:hover {
 
 .contentBox h1 {
 	margin: 0 1em;
-    font-family: Orbitron;
+	font-family: Orbitron;
 }
 
 .barWrap {
@@ -401,8 +456,8 @@ button:hover {
 
 .horizontalBarWrap .horizontalBar {
 	padding: 0;
-	background: rgba( 200, 255, 215, 0.8 );
-	color: #031E11;
+	background: rgba(200, 255, 215, 0.8);
+	color: #031e11;
 	overflow: hidden;
 	height: 1.6em;
 }
@@ -410,7 +465,6 @@ button:hover {
 .horizontalBar p {
 	margin: 0.3em;
 }
-
 
 #TopBar {
 	position: absolute;
@@ -425,8 +479,6 @@ button:hover {
 #TopBar > * {
 	flex-grow: 1;
 }
-
-
 
 input[type="file"] {
     display: none;
@@ -487,9 +539,8 @@ input[type="text"] {
 
 .disabled {
 	text-shadow: none;
-    color: gray;
+	color: gray;
 }
-
 
 .selectList {
 	user-select: none;
@@ -543,7 +594,6 @@ input[type="text"] {
 	flex-direction: row;
 	flex-wrap: nowrap;
 }
-
 
 .rightFlexFloat {
 	flex-grow: 1;
