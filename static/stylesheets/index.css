@@ -60,12 +60,22 @@ body {
 	z-index: 501;
 	text-align: left;
 }
+.floater .title {
+	font-family: Orbitron;
+	width: 100%;
+	text-align: center;
+	font-size: 1.5em;
+	padding: 0.3em 0;
+	background: #0d8f73;
+	color: #6dffe1;
+	user-select: none;
+}
 .resizer {
 	position: absolute;
 	width: 20px;
 	height: 20px;
 	border-radius: 5px;
-	background-color: black;
+	/* background-color: black; */
 	z-index: 502;
 }
 .resizer.nw {

@@ -1,7 +1,14 @@
 
+#gaugeBox .wrapper{
+  display: flex;
+  transform-origin: top left;
+}
+
 .gaugeContainer {
   margin: 0;
   padding: 0;
+  user-select: none;
+  position: relative;
 }
 
 .gauge {
@@ -37,6 +44,18 @@
   top: 135px;
   left: 135px;
   text-align: center;
+}
+
+.gaugeContainer .label {
+	line-height: 30px;
+    width: 80px;
+    height: 30px;
+    background-color: var(--blue-dark-bg);
+    border-radius: 10px;
+    position: absolute;
+    top: 195px;
+    left: 120px;
+    text-align: center;
 }
 
 .gauge .outline,

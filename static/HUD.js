@@ -9,13 +9,60 @@ cambox.movable();
 cambox.resizable();
 
 const gaugeButton = document.getElementById("gaugeButton");
-let gaugeTestBox = new Floating("gaugeTestBox", 400, 1);
-gaugeTestBox.setPosition("10px", "290px");
-gaugeButton.addEventListener("click", gaugeTestBox.toggle.bind(gaugeTestBox));
-gaugeTestBox.movable();
-gaugeTestBox.resizable();
-let mygauge = createGauge(document.getElementById("gaugeTest"));
-mygauge.eventListeners();
+let gaugeBox = new Floating("gaugeBox", 200, 1.5609756097560976);
+gaugeBox.setPosition("100px", "290px");
+gaugeButton.addEventListener("click", gaugeBox.toggle.bind(gaugeBox));
+gaugeBox.movable();
+gaugeBox.resizable();
+let gaugeBoxDiv = document.getElementById("gaugeBox");
+let gaugeTitle = gaugeBoxDiv.querySelector(".title");
+let gaugeWrapper = document.querySelector("#gaugeBox .wrapper");
+const gaugeWrapperW = 330 * 2;
+const gaugeWrapperH = 330;
+gaugeBox.onResize = function () {
+	let scale = Math.min(
+		gaugeWrapper.offsetWidth / gaugeWrapperW,
+		(gaugeBoxDiv.offsetHeight - gaugeTitle.offsetHeight) / gaugeWrapperH
+	);
+	gaugeWrapper.style.transform = "scale("+scale+")";
+}
+
+let vsiGauge = createGauge(
+	document.getElementById("vsiGauge"),
+	{
+		label: "VSI",
+		cx: 160, cy: 160,
+		rin: 95, rout: 125,
+		startAngle: -260, endAngle: 80,
+		minValue: -10, maxValue: 10,
+		decPlaces: 2,
+		value: 0,
+		scale: {
+			step: 2,
+			delta: 5,
+			titleDelta: 20,
+		}
+	}
+);
+vsiGauge.eventListeners();
+let speedGauge = createGauge(
+	document.getElementById("speedGauge"),
+	{
+		label: "Speed",
+		cx: 160, cy: 160,
+		rin: 95, rout: 125,
+		startAngle: -170, endAngle: 170,
+		minValue: 0, maxValue: 120,
+		decPlaces: 2,
+		value: 10,
+		scale: {
+			step: 10,
+			delta: 5,
+			titleDelta: 20,
+		}
+	}
+);
+speedGauge.eventListeners();
 
 BottomRightPanel.show = function(info=null) {
 	BottomRightPanel.contentInfo = info;

@@ -185,7 +185,7 @@ class Gauge {
 	}
 }
 
-function createGauge(container) {
+function createGauge(container, options) {
 	container.innerHTML = `
 	  <svg class="gauge" height="330" width="330" view-box="0 0 330 165">
 		<g class="scale" stroke="red"></g>
@@ -193,25 +193,14 @@ function createGauge(container) {
 		<path class="fill" d="" />
 		<polygon class="needle" points="220,10 300,210 220,250 140,210" />
 	  </svg>
-	  <div class="output">30</div>
+	  <div class="output"></div>
+	  <div class="label">${options.label}</div>
 	`;
 	container.classList.add("gaugeContainer");
 	return new Gauge(
 		container.querySelector(".gauge"),
 		container.querySelector(".output"),
-		{
-			cx: 160, cy: 160,
-			rin: 95, rout: 125,
-			startAngle: -260, endAngle: 80,
-			minValue: 0, maxValue: 100,
-			decPlaces: 2,
-			value: 50,
-			scale: {
-				step: 10,
-				delta: 5,
-				titleDelta: 20,
-			}
-		}
+		options
 	);
 }
 
