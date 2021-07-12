@@ -8,6 +8,15 @@ camButton.addEventListener("click", cambox.toggle.bind(cambox));
 cambox.movable();
 cambox.resizable();
 
+const gaugeButton = document.getElementById("gaugeButton");
+let gaugeTestBox = new Floating("gaugeTestBox", 400, 1);
+gaugeTestBox.setPosition("10px", "290px");
+gaugeButton.addEventListener("click", gaugeTestBox.toggle.bind(gaugeTestBox));
+gaugeTestBox.movable();
+gaugeTestBox.resizable();
+let mygauge = createGauge(document.getElementById("gaugeTest"));
+mygauge.eventListeners();
+
 BottomRightPanel.show = function(info=null) {
 	BottomRightPanel.contentInfo = info;
 	BottomRightPanel.classList.remove("hidden");
