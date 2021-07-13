@@ -24,16 +24,43 @@
 			<div id="LeftPanel">
 				<div id="map"></div> 
 				<div id="HUD">
-					<div id="gaugeBox" class="floater">
-						<div class="title">Gauge Box</div>
+					<div id="LeftFlightPanel" class="hidden">
 						<div class="wrapper">
 							<div id="vsiGauge"></div>
 							<div id="speedGauge"></div>
 						</div>
-						<div class="resizer ne"></div>
-						<div class="resizer nw"></div>
-						<div class="resizer se"></div>
-						<div class="resizer sw"></div>
+					</div>
+					<div id="innerHUD">
+						<div id="BottomLeftPanel">
+							<div id="LatLang"></div>
+						</div>
+						<div id="BottomRightPanel" class="hidden">
+							<div class="close blockButton" onclick="BottomRightPanel.hide()">
+								X
+							</div>
+							<div class="content"></div>
+						</div>
+						<div id="TopLeftPanel">
+							<div id="MenuButton" class="blockButton">Menu</div>
+							<div id="camButton" class="blockButton">Camera</div>
+							<div id="planButtons" class="buttonGroup">
+								<label class="blockButton" for="fileInput">Load</label>
+								<input id="fileInput" type="file" onchange="graph.readFile(event)">
+								<div class="blockButton" onclick="graph.saveFile()">Save</div>
+								<div class="blockButton" onclick="graph.clear()">Clear</div>
+								<div class="blockButton" onclick="setFlightMode()">Flight Mode</div>
+							</div>
+							<div id="flightButtons" class="buttonGroup hidden">
+								<div class="blockButton" onclick="setPlanMode()">Plan Mode</div>
+							</div>
+						</div>
+						<div id="TopRightPanel">
+						</div>
+					</div>
+					<div id="RightFlightPanel" class="hidden">
+						<div class="wrapper">
+							<div id="altitudeGauge"></div>
+						</div>
 					</div>
 					<div id="cambox" class="floater">
 						<div class="title">Camera</div>
@@ -42,26 +69,6 @@
 						<div id="camera">PUT CAMERA HERE</div>
 						<div class="resizer se"></div>
 						<div class="resizer sw"></div>
-					</div>
-					<div id="BottomLeftPanel">
-						<div id="LatLang"></div>
-					</div>
-					<div id="BottomRightPanel" class="hidden">
-						<div class="close blockButton" onclick="BottomRightPanel.hide()">
-							X
-						</div>
-						<div class="content"></div>
-					</div>
-					<div id="TopLeftPanel">
-						<div id="MenuButton" class="blockButton">Menu</div>
-						<div id="camButton" class="blockButton">Camera</div>
-						<div id="gaugeButton" class="blockButton">Gauge</div>
-						<label class="blockButton" for="fileInput">Load</label>
-						<input id="fileInput" type="file" onchange="graph.readFile(event)">
-						<div class="blockButton" onclick="graph.saveFile()">Save</div>
-						<div class="blockButton" onclick="graph.clear()">Clear</div>
-					</div>
-					<div id="TopRightPanel">
 					</div>
 				</div>
 			</div> 

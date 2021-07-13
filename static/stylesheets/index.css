@@ -164,6 +164,21 @@ body {
 	*/
 }
 
+.buttonGroup {
+	max-width: 500px;
+	transition: 0.4s;
+	display: flex;
+	overflow: hidden;
+}
+
+.buttonGroup.hidden {
+	max-width: 0px;
+}
+
+#TopLeftPanel .blockButton {
+	white-space: nowrap;
+}
+
 #TopLeftPanel {
 	font-family: Orbitron;
 	position: absolute;
@@ -172,6 +187,7 @@ body {
 	margin: 0;
 	padding: 0.5em;
 	width: 66%;
+	height: 3.1em;
 	z-index: 500;
 	clip-path: polygon(0 0, 100% 0px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
 	background: var(--blue-bg);
@@ -541,9 +557,40 @@ input[type="text"] {
     left: 0;
     top: 0;
 	pointer-events: none;
+	display: flex;
 }
 
-#HUD > * {
+#innerHUD {
+	position: relative;
+	flex-grow: 1;
+	pointer-events: none;
+}
+
+#RightFlightPanel,
+#LeftFlightPanel {
+	width: 330px;
+	height: 100%;
+	background: var(--blue-bg);
+	color: var(--blue-fg);
+	z-index: 500;
+	pointer-events: auto;
+	transition: 0.6s;
+	overflow: hidden;
+	position: relative;
+}
+
+#LeftFlightPanel > .wrapper {
+	right: 0;
+	position: absolute;
+}
+
+#RightFlightPanel.hidden ,
+#LeftFlightPanel.hidden {
+	width: 0px;
+}
+
+.floater,
+#innerHUD > * {
 	pointer-events: auto;
 }
 

@@ -8,25 +8,6 @@ camButton.addEventListener("click", cambox.toggle.bind(cambox));
 cambox.movable();
 cambox.resizable();
 
-const gaugeButton = document.getElementById("gaugeButton");
-let gaugeBox = new Floating("gaugeBox", 200, 1.5609756097560976);
-gaugeBox.setPosition("100px", "290px");
-gaugeButton.addEventListener("click", gaugeBox.toggle.bind(gaugeBox));
-gaugeBox.movable();
-gaugeBox.resizable();
-let gaugeBoxDiv = document.getElementById("gaugeBox");
-let gaugeTitle = gaugeBoxDiv.querySelector(".title");
-let gaugeWrapper = document.querySelector("#gaugeBox .wrapper");
-const gaugeWrapperW = 330 * 2;
-const gaugeWrapperH = 330;
-gaugeBox.onResize = function () {
-	let scale = Math.min(
-		gaugeWrapper.offsetWidth / gaugeWrapperW,
-		(gaugeBoxDiv.offsetHeight - gaugeTitle.offsetHeight) / gaugeWrapperH
-	);
-	gaugeWrapper.style.transform = "scale("+scale+")";
-}
-
 let vsiGauge = createGauge(
 	document.getElementById("vsiGauge"),
 	{
@@ -45,6 +26,7 @@ let vsiGauge = createGauge(
 	}
 );
 vsiGauge.eventListeners();
+
 let speedGauge = createGauge(
 	document.getElementById("speedGauge"),
 	{
@@ -63,6 +45,25 @@ let speedGauge = createGauge(
 	}
 );
 speedGauge.eventListeners();
+
+let altitudeGauge = createGauge(
+	document.getElementById("altitudeGauge"),
+	{
+		label: "Altitude",
+		cx: 160, cy: 160,
+		rin: 95, rout: 125,
+		startAngle: -170, endAngle: 170,
+		minValue: 0, maxValue: 200,
+		decPlaces: 1,
+		value: 70,
+		scale: {
+			step: 10,
+			delta: 5,
+			titleDelta: 20,
+		}
+	}
+);
+altitudeGauge.eventListeners();
 
 BottomRightPanel.show = function(info=null) {
 	BottomRightPanel.contentInfo = info;
@@ -211,4 +212,23 @@ function AdvancedCopy(theText) {
 	if (currentRange) {
 		window.getSelection().addRange(currentRange);
 	}
+}
+
+let LeftFlightPanel = document.getElementById("LeftFlightPanel");
+let RightFlightPanel = document.getElementById("RightFlightPanel");
+let flightButtons = document.getElementById("flightButtons");
+let planButtons = document.getElementById("planButtons");
+
+function setFlightMode() {
+	LeftFlightPanel.classList.remove("hidden");
+	RightFlightPanel.classList.remove("hidden");
+	flightButtons.classList.remove("hidden");
+	planButtons.classList.add("hidden");
+}
+
+function setPlanMode() {
+	LeftFlightPanel.classList.add("hidden");
+	RightFlightPanel.classList.add("hidden");
+	flightButtons.classList.add("hidden");
+	planButtons.classList.remove("hidden");
 }
