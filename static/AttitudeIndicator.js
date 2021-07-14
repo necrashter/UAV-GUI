@@ -102,7 +102,7 @@ class AttitudeIndicator {
 				start = timestamp;
 			const elapsed = timestamp - start;
 			if (elapsed >= 1000) {
-				// console.log(refreshes);
+				// console.log("AttitudeIndicator FPS:", refreshes);
 				start = timestamp;
 				refreshes = 0;
 			}

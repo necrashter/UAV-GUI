@@ -33,7 +33,7 @@ let speedGauge = createGauge(
 		label: "Speed",
 		cx: 160, cy: 160,
 		rin: 95, rout: 125,
-		startAngle: -170, endAngle: 170,
+		startAngle: -160, endAngle: 160,
 		minValue: 0, maxValue: 120,
 		decPlaces: 2,
 		value: 10,
@@ -45,6 +45,25 @@ let speedGauge = createGauge(
 	}
 );
 speedGauge.eventListeners();
+
+let batteryGauge = createGauge(
+	document.getElementById("batteryGauge"),
+	{
+		label: "Battery",
+		cx: 160, cy: 160,
+		rin: 95, rout: 125,
+		startAngle: -160, endAngle: 160,
+		minValue: 0, maxValue: 100,
+		decPlaces: 1,
+		value: 70,
+		scale: {
+			step: 10,
+			delta: 5,
+			titleDelta: 20,
+		}
+	}
+);
+batteryGauge.eventListeners();
 
 let altitudeGauge = createGauge(
 	document.getElementById("altitudeGauge"),
@@ -71,6 +90,13 @@ let attitudeIndicator = createAttitudeIndicator(
 	document.getElementById("attitudePitch")
 );
 attitudeIndicator.draw();
+
+let headingIndicator = createHeadingIndicator(
+	document.getElementById("headingIndicator"),
+	document.getElementById("headingBank"),
+	document.getElementById("headingPitch")
+);
+headingIndicator.draw();
 
 BottomRightPanel.show = function(info=null) {
 	BottomRightPanel.contentInfo = info;
@@ -236,6 +262,7 @@ function setFlightMode() {
 	planButtons.classList.add("hidden");
 	currentMode = 1;
 	attitudeIndicator.startAnimation();
+	headingIndicator.startAnimation();
 }
 
 function setPlanMode() {
