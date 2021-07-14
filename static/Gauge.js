@@ -187,7 +187,7 @@ class Gauge {
 
 function createGauge(container, options) {
 	container.innerHTML = `
-	  <svg class="gauge" height="330" width="330" view-box="0 0 330 165">
+	  <svg class="gauge" height="${options.h}" width="${options.w}">
 		<g class="scale" stroke="red"></g>
 		<path class="outline" d="" />
 		<path class="fill" d="" />

@@ -8,12 +8,18 @@ camButton.addEventListener("click", cambox.toggle.bind(cambox));
 cambox.movable();
 cambox.resizable();
 
+const defaultGaugeCenter = 160;
+const defaultGaugeRin = 95;
+const defaultGaugeRout = 125;
+const defaultGaugeSize = 320;
+
 let vsiGauge = createGauge(
 	document.getElementById("vsiGauge"),
 	{
 		label: "VSI",
-		cx: 160, cy: 160,
-		rin: 95, rout: 125,
+		w: defaultGaugeSize, h: defaultGaugeSize,
+		cx: defaultGaugeCenter, cy: defaultGaugeCenter,
+		rin: defaultGaugeRin, rout: defaultGaugeRout,
 		startAngle: -260, endAngle: 80,
 		minValue: -10, maxValue: 10,
 		decPlaces: 2,
@@ -31,8 +37,9 @@ let speedGauge = createGauge(
 	document.getElementById("speedGauge"),
 	{
 		label: "Speed",
-		cx: 160, cy: 160,
-		rin: 95, rout: 125,
+		w: defaultGaugeSize, h: defaultGaugeSize,
+		cx: defaultGaugeCenter, cy: defaultGaugeCenter,
+		rin: defaultGaugeRin, rout: defaultGaugeRout,
 		startAngle: -160, endAngle: 160,
 		minValue: 0, maxValue: 120,
 		decPlaces: 2,
@@ -50,8 +57,9 @@ let batteryGauge = createGauge(
 	document.getElementById("batteryGauge"),
 	{
 		label: "Battery",
-		cx: 160, cy: 160,
-		rin: 95, rout: 125,
+		w: defaultGaugeSize, h: defaultGaugeSize,
+		cx: defaultGaugeCenter, cy: defaultGaugeCenter,
+		rin: defaultGaugeRin, rout: defaultGaugeRout,
 		startAngle: -160, endAngle: 160,
 		minValue: 0, maxValue: 100,
 		decPlaces: 1,
@@ -69,8 +77,9 @@ let altitudeGauge = createGauge(
 	document.getElementById("altitudeGauge"),
 	{
 		label: "Altitude",
-		cx: 160, cy: 160,
-		rin: 95, rout: 125,
+		w: defaultGaugeSize, h: defaultGaugeSize,
+		cx: defaultGaugeCenter, cy: defaultGaugeCenter,
+		rin: defaultGaugeRin, rout: defaultGaugeRout,
 		startAngle: -170, endAngle: 170,
 		minValue: 0, maxValue: 200,
 		decPlaces: 1,

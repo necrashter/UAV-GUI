@@ -29,8 +29,8 @@
   background-color: var(--blue-dark-bg);
   border-radius: 60px;
   position: absolute;
-  top: 130px;
-  left: 130px;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
   text-align: center;
 }
 
@@ -53,8 +53,8 @@
     background-color: var(--blue-dark-bg);
     border-radius: 10px;
     position: absolute;
-    top: 195px;
-    left: 120px;
+	top: calc(50% + 30px);
+	left: calc(50% - 40px);
     text-align: center;
 }
 

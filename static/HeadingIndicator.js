@@ -147,7 +147,7 @@ class HeadingIndicator {
 
 function createHeadingIndicator(canvas) {
 	return new HeadingIndicator(canvas, {
-		w: 330, h: 330, textR: 130,
+		w: 320, h: 320, textR: 130,
 		lineInnerR: 75,
 		lineOuterR: 110,
 		lineWidth: 3,

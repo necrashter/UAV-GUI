@@ -160,7 +160,7 @@ class AttitudeIndicator {
 
 function createAttitudeIndicator(canvas, bankDiv, pitchDiv) {
 	return new AttitudeIndicator(canvas, bankDiv, pitchDiv, {
-		w: 330, h: 330, r: 140,
+		w: 320, h: 320, r: 140,
 		pgw: 80, // Pitch guide width
 		pglw: 2, // Pitch guide line width
 		npg: 3, // Pitch guide number
