@@ -656,3 +656,25 @@ input[type="text"] {
 	flex-grow: 1;
 	text-align: right;
 }
+
+#attitudeBank {
+	position: absolute;
+	top: 0;
+	left: 6px;
+	background: var(--blue-dark-bg);
+	padding: 12px;
+	width: 48px;
+	text-align: center;
+	border-radius: 16px;
+}
+
+#attitudePitch {
+	position: absolute;
+	bottom: 0;
+	left: 6px;
+	background: var(--blue-dark-bg);
+	padding: 12px;
+	width: 48px;
+	text-align: center;
+	border-radius: 16px;
+}

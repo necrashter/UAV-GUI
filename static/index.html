@@ -60,6 +60,11 @@
 					<div id="RightFlightPanel" class="hidden">
 						<div class="wrapper">
 							<div id="altitudeGauge"></div>
+							<div class="gaugeContainer">
+								<canvas id="attitudeIndicator" width="330" height="330"></canvas>
+								<div id="attitudeBank"></div>
+								<div id="attitudePitch"></div>
+							</div>
 						</div>
 					</div>
 					<div id="cambox" class="floater">
@@ -80,6 +85,7 @@
 		<div id="ContextMenu" class="hidden"></div>
 
 		<script src="Gauge.js"></script>
+		<script src="AttitudeIndicator.js"></script>
 		<script src="Debug.js"></script>
 		<script src="Floating.js"></script>
 		<script src="Network.js"></script>

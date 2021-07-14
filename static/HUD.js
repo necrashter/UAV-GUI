@@ -65,6 +65,13 @@ let altitudeGauge = createGauge(
 );
 altitudeGauge.eventListeners();
 
+let attitudeIndicator = createAttitudeIndicator(
+	document.getElementById("attitudeIndicator"),
+	document.getElementById("attitudeBank"),
+	document.getElementById("attitudePitch")
+);
+attitudeIndicator.draw();
+
 BottomRightPanel.show = function(info=null) {
 	BottomRightPanel.contentInfo = info;
 	BottomRightPanel.classList.remove("hidden");
@@ -219,11 +226,16 @@ let RightFlightPanel = document.getElementById("RightFlightPanel");
 let flightButtons = document.getElementById("flightButtons");
 let planButtons = document.getElementById("planButtons");
 
+// 0 is plan, 1 is flight
+let currentMode = 0;
+
 function setFlightMode() {
 	LeftFlightPanel.classList.remove("hidden");
 	RightFlightPanel.classList.remove("hidden");
 	flightButtons.classList.remove("hidden");
 	planButtons.classList.add("hidden");
+	currentMode = 1;
+	attitudeIndicator.startAnimation();
 }
 
 function setPlanMode() {
@@ -231,4 +243,5 @@ function setPlanMode() {
 	RightFlightPanel.classList.add("hidden");
 	flightButtons.classList.add("hidden");
 	planButtons.classList.remove("hidden");
+	currentMode = 0;
 }
