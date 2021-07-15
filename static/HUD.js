@@ -8,6 +8,105 @@ camButton.addEventListener("click", cambox.toggle.bind(cambox));
 cambox.movable();
 cambox.resizable();
 
+const defaultGaugeCenter = 160;
+const defaultGaugeRin = 95;
+const defaultGaugeRout = 125;
+const defaultGaugeSize = 320;
+
+let vsiGauge = createGauge(
+	document.getElementById("vsiGauge"),
+	{
+		label: "VSI",
+		w: defaultGaugeSize, h: defaultGaugeSize,
+		cx: defaultGaugeCenter, cy: defaultGaugeCenter,
+		rin: defaultGaugeRin, rout: defaultGaugeRout,
+		startAngle: -260, endAngle: 80,
+		minValue: -10, maxValue: 10,
+		decPlaces: 2,
+		value: 0,
+		scale: {
+			step: 2,
+			delta: 5,
+			titleDelta: 20,
+		}
+	}
+);
+vsiGauge.eventListeners();
+
+let speedGauge = createGauge(
+	document.getElementById("speedGauge"),
+	{
+		label: "Speed",
+		w: defaultGaugeSize, h: defaultGaugeSize,
+		cx: defaultGaugeCenter, cy: defaultGaugeCenter,
+		rin: defaultGaugeRin, rout: defaultGaugeRout,
+		startAngle: -160, endAngle: 160,
+		minValue: 0, maxValue: 120,
+		decPlaces: 2,
+		value: 10,
+		scale: {
+			step: 10,
+			delta: 5,
+			titleDelta: 20,
+		}
+	}
+);
+speedGauge.eventListeners();
+
+let batteryGauge = createGauge(
+	document.getElementById("batteryGauge"),
+	{
+		label: "Battery",
+		w: defaultGaugeSize, h: defaultGaugeSize,
+		cx: defaultGaugeCenter, cy: defaultGaugeCenter,
+		rin: defaultGaugeRin, rout: defaultGaugeRout,
+		startAngle: -160, endAngle: 160,
+		minValue: 0, maxValue: 100,
+		decPlaces: 1,
+		value: 70,
+		scale: {
+			step: 10,
+			delta: 5,
+			titleDelta: 20,
+		}
+	}
+);
+batteryGauge.eventListeners();
+
+let altitudeGauge = createGauge(
+	document.getElementById("altitudeGauge"),
+	{
+		label: "Altitude",
+		w: defaultGaugeSize, h: defaultGaugeSize,
+		cx: defaultGaugeCenter, cy: defaultGaugeCenter,
+		rin: defaultGaugeRin, rout: defaultGaugeRout,
+		startAngle: -170, endAngle: 170,
+		minValue: 0, maxValue: 200,
+		decPlaces: 1,
+		value: 70,
+		scale: {
+			step: 10,
+			delta: 5,
+			titleDelta: 20,
+		}
+	}
+);
+altitudeGauge.eventListeners();
+
+let attitudeIndicator = createAttitudeIndicator(
+	document.getElementById("attitudeIndicator"),
+	document.getElementById("attitudeBank"),
+	document.getElementById("attitudePitch")
+);
+attitudeIndicator.draw();
+
+let headingIndicator = createHeadingIndicator(
+	document.getElementById("headingIndicator"),
+	document.getElementById("headingBank"),
+	document.getElementById("headingPitch")
+);
+headingIndicator.draw();
+
 BottomRightPanel.show = function(info=null) {
 	BottomRightPanel.contentInfo = info;
 	BottomRightPanel.classList.remove("hidden");
@@ -155,4 +254,30 @@ function AdvancedCopy(theText) {
 	if (currentRange) {
 		window.getSelection().addRange(currentRange);
 	}
+}
+
+let LeftFlightPanel = document.getElementById("LeftFlightPanel");
+let RightFlightPanel = document.getElementById("RightFlightPanel");
+let flightButtons = document.getElementById("flightButtons");
+let planButtons = document.getElementById("planButtons");
+
+// 0 is plan, 1 is flight
+let currentMode = 0;
+
+function setFlightMode() {
+	LeftFlightPanel.classList.remove("hidden");
+	RightFlightPanel.classList.remove("hidden");
+	flightButtons.classList.remove("hidden");
+	planButtons.classList.add("hidden");
+	currentMode = 1;
+	attitudeIndicator.startAnimation();
+	headingIndicator.startAnimation();
+}
+
+function setPlanMode() {
+	LeftFlightPanel.classList.add("hidden");
+	RightFlightPanel.classList.add("hidden");
+	flightButtons.classList.add("hidden");
+	planButtons.classList.remove("hidden");
+	currentMode = 0;
 }
