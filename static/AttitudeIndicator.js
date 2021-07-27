@@ -21,7 +21,7 @@ class AttitudeIndicator {
 		this.angle = 0;
 		this.pitchTranslate = 0;
 		this.isDragging = false;
-		this.eventListeners();
+		//this.eventListeners();
 
 		this.updateDiv();
 
@@ -84,7 +84,7 @@ class AttitudeIndicator {
 		// rotation only
 		this.ctx.restore();
 
-		// draw 
+		// draw
 		this.ctx.drawImage(rotationGuideImage, 0, 0, this.w, this.h);
 
 		// Restore the unrotated state
@@ -133,6 +133,12 @@ class AttitudeIndicator {
 		this.pitchTranslate = 1.5*Math.sqrt(dx * dx + dy * dy) - 80;
 		this.updateDiv();
 	}
+
+		updateValues(angle, pitch) {
+			this.angle = angle;
+			this.pitchTranslate = pitch;
+			this.updateDiv();
+		}
 
 	eventListeners() {
 		this.canvas.addEventListener("mousedown", (ev) => {

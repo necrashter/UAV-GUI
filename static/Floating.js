@@ -3,7 +3,7 @@
 //resizable and draggable menus
 class Floating {
 	/**
-	 * @param {string} id 
+	 * @param {string} id
 	 * id of the dom element
 	 * @param {number} min_height
 	 */
@@ -148,6 +148,3 @@ class Floating {
 	}
 
 }
-
-
-

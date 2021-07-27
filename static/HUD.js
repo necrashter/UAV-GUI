@@ -31,7 +31,7 @@ let vsiGauge = createGauge(
 		}
 	}
 );
-vsiGauge.eventListeners();
+//vsiGauge.eventListeners();
 
 let speedGauge = createGauge(
 	document.getElementById("speedGauge"),
@@ -51,7 +51,7 @@ let speedGauge = createGauge(
 		}
 	}
 );
-speedGauge.eventListeners();
+//speedGauge.eventListeners();
 
 let batteryGauge = createGauge(
 	document.getElementById("batteryGauge"),
@@ -71,7 +71,7 @@ let batteryGauge = createGauge(
 		}
 	}
 );
-batteryGauge.eventListeners();
+//batteryGauge.eventListeners();
 
 let altitudeGauge = createGauge(
 	document.getElementById("altitudeGauge"),

@@ -15,7 +15,7 @@ class HeadingIndicator {
 		// Angle is in radians
 		this.angle = 0;
 		this.isDragging = false;
-		this.eventListeners();
+		//this.eventListeners();
 		this.ctx.font = "16px sans-serif";
 
 		// this.updateDiv();
