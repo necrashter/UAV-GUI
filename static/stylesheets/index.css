@@ -60,12 +60,22 @@ body {
 	z-index: 501;
 	text-align: left;
 }
+.floater .title {
+	font-family: Orbitron;
+	width: 100%;
+	text-align: center;
+	font-size: 1.5em;
+	padding: 0.3em 0;
+	background: #0d8f73;
+	color: #6dffe1;
+	user-select: none;
+}
 .resizer {
 	position: absolute;
 	width: 20px;
 	height: 20px;
 	border-radius: 5px;
-	background-color: black;
+	/* background-color: black; */
 	z-index: 502;
 }
 .resizer.nw {
@@ -154,6 +164,21 @@ body {
 	*/
 }
 
+.buttonGroup {
+	max-width: 500px;
+	transition: 0.4s;
+	display: flex;
+	overflow: hidden;
+}
+
+.buttonGroup.hidden {
+	max-width: 0px;
+}
+
+#TopLeftPanel .blockButton {
+	white-space: nowrap;
+}
+
 #TopLeftPanel {
 	font-family: Orbitron;
 	position: absolute;
@@ -162,6 +187,7 @@ body {
 	margin: 0;
 	padding: 0.5em;
 	width: 66%;
+	height: 3.1em;
 	z-index: 500;
 	clip-path: polygon(0 0, 100% 0px, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
 	background: var(--blue-bg);
@@ -531,9 +557,70 @@ input[type="text"] {
     left: 0;
     top: 0;
 	pointer-events: none;
+	display: flex;
 }
 
-#HUD > * {
+#innerHUD {
+	position: relative;
+	flex-grow: 1;
+	pointer-events: none;
+}
+
+#RightFlightPanel,
+#LeftFlightPanel {
+	width: 330px;
+	height: 100%;
+	background: var(--blue-bg);
+	color: var(--blue-fg);
+	z-index: 500;
+	pointer-events: auto;
+	transition: 0.6s;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: relative;
+}
+
+#LeftFlightPanel {
+	direction: rtl;
+}
+
+#LeftFlightPanel > .wrapper {
+	right: 0;
+	position: absolute;
+	direction: ltr;
+	transform-origin: top left;
+}
+
+#RightFlightPanel > .wrapper {
+	left: 0;
+	position: absolute;
+	transform-origin: top left;
+}
+
+.verticalResizer {
+	position: absolute;
+    height: 100%;
+    width: 6px;
+    background: var(--blue-fg);
+}
+
+#LeftFlightPanel .verticalResizer {
+	cursor: e-resize;
+    right: 0;
+}
+
+#RightFlightPanel .verticalResizer {
+	cursor: w-resize;
+    left: 0;
+}
+
+#RightFlightPanel.hidden ,
+#LeftFlightPanel.hidden {
+	width: 0px;
+}
+
+.floater,
+#innerHUD > * {
 	pointer-events: auto;
 }
 
@@ -598,4 +685,26 @@ input[type="text"] {
 .rightFlexFloat {
 	flex-grow: 1;
 	text-align: right;
+}
+
+#attitudeBank {
+	position: absolute;
+	top: 0;
+	left: 6px;
+	background: var(--blue-dark-bg);
+	padding: 12px;
+	width: 48px;
+	text-align: center;
+	border-radius: 16px;
+}
+
+#attitudePitch {
+	position: absolute;
+	bottom: 0;
+	left: 6px;
+	background: var(--blue-dark-bg);
+	padding: 12px;
+	width: 48px;
+	text-align: center;
+	border-radius: 16px;
 }

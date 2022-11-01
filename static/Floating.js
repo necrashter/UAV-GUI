@@ -130,6 +130,10 @@ class Floating {
 						self.floatingBox.style.left = rect.left + diffX + "px";
 					}
 
+					if (self.onResize) {
+						self.onResize();
+					}
+
 					prevX = event.clientX;
 					prevY = event.clientY;
 				}
